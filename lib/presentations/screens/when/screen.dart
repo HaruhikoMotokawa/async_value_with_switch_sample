@@ -9,6 +9,8 @@ class WhenScreen extends ConsumerWidget {
     super.key,
   });
 
+  static const path = '/when';
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userList = ref.watch(userListProvider);
