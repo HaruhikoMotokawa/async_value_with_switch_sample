@@ -1,5 +1,5 @@
 import 'package:async_value_with_switch_sample/core/constants/constants.dart';
-import 'package:async_value_with_switch_sample/presentations/screens/home/screen.dart';
+import 'package:async_value_with_switch_sample/core/router/router.dart';
 import 'package:async_value_with_switch_sample/presentations/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,7 +11,7 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: Constants.appName,
       theme: createThemeData(Constants.baseSeedColor, Brightness.light),
       darkTheme: createThemeData(Constants.baseSeedColor, Brightness.dark),
@@ -22,7 +22,7 @@ class MainApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: const HomeScreen(),
+      routerConfig: ref.read(routerProvider),
     );
   }
 }

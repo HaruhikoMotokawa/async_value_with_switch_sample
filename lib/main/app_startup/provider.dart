@@ -1,3 +1,4 @@
+import 'package:async_value_with_switch_sample/data/sources/local/isar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -5,6 +6,5 @@ part 'provider.g.dart';
 
 @Riverpod(keepAlive: true)
 Future<void> appStartup(Ref ref) async {
-  // 必要な場合はここに初期化を書く
-  // shared_preferencesなどのFutureの初期化が必要な場合はここに書く
+  await ref.read(isarProvider.future);
 }

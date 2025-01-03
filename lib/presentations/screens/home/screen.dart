@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -7,9 +8,23 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('HomeScreen'),
+      ),
       body: Center(
-        child: Text('Hello World!'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 20,
+          children: [
+            ElevatedButton(
+              child: const Text('WhenScreen'),
+              onPressed: () {
+                context.push('/when');
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
