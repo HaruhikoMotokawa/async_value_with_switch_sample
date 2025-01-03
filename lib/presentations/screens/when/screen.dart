@@ -1,6 +1,6 @@
 import 'package:async_value_with_switch_sample/data/repositories/user/provider.dart';
 import 'package:async_value_with_switch_sample/presentations/shared/floating_action_button/floating_action_button.dart';
-import 'package:async_value_with_switch_sample/presentations/shared/list_tile/user_list_tile.dart';
+import 'package:async_value_with_switch_sample/presentations/shared/list_view/user_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,28 +16,23 @@ class WhenScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('WhenScreen'),
       ),
-      body: userList.when(
-        data: (list) {
-          return Center(
-            child: list.isEmpty
+      body: Center(
+        child: userList.when(
+          // ここからデフォルトの設定で入っている
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: true,
+          skipError: false,
+          // ここまで
+          data: (list) {
+            return list.isEmpty
                 ? const Text('データがありません')
-                : ListView.builder(
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      final user = list[index];
-                      return UserListTile(
-                        user: user,
-                        onTap: () {},
-                        onLongPress: () {},
-                      );
-                    },
-                  ),
-          );
-        },
-        error: (error, stackTrace) => Center(
-          child: Text(error.toString()),
+                : Expanded(
+                    child: UserListView(list: list),
+                  );
+          },
+          error: (error, stackTrace) => Text(error.toString()),
+          loading: () => const CircularProgressIndicator(),
         ),
-        loading: () => const CircularProgressIndicator(),
       ),
       floatingActionButton: const EditUserFloatingActionButton(),
     );

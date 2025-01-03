@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 class UserListTile extends StatelessWidget {
   const UserListTile({
     required this.user,
-    required this.onTap,
-    required this.onLongPress,
+    this.onLongPress,
+    this.onTap,
     super.key,
   });
 
   final User user;
-  final VoidCallback onTap;
-  final VoidCallback onLongPress;
+  final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
 
   @override
   Widget build(BuildContext context) {
