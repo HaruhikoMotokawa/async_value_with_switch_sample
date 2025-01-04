@@ -25,24 +25,24 @@ extension on EditUserFloatingActionButton {
     final result = await ActionBottomSheet.show<EditUserType>(
       context,
       actions: [
-        const ActionItem(
+        ActionItem(
           icon: Icons.person,
-          text: 'ユーザーデータを一つ作成',
+          text: EditUserType.create.text,
           returnValue: EditUserType.create,
         ),
-        const ActionItem(
+        ActionItem(
           icon: Icons.person_add_alt,
-          text: 'ユーザーデータを500個作成',
+          text: EditUserType.createBatch.text,
           returnValue: EditUserType.createBatch,
         ),
-        const ActionItem(
+        ActionItem(
           icon: Icons.delete,
-          text: 'ユーザーデータを10個削除',
-          returnValue: EditUserType.deleteBatch,
+          text: EditUserType.delete.text,
+          returnValue: EditUserType.delete,
         ),
-        const ActionItem(
+        ActionItem(
           icon: Icons.delete_forever,
-          text: '全てのユーザーデータを削除',
+          text: EditUserType.deleteAll.text,
           returnValue: EditUserType.deleteAll,
         ),
       ],
@@ -56,8 +56,8 @@ extension on EditUserFloatingActionButton {
         await viewModel.create();
       case EditUserType.createBatch:
         await viewModel.createBatch();
-      case EditUserType.deleteBatch:
-        await viewModel.deleteBatch();
+      case EditUserType.delete:
+        await viewModel.delete();
       case EditUserType.deleteAll:
         await viewModel.initUser();
     }
@@ -70,8 +70,8 @@ extension on EditUserFloatingActionButton {
 
 enum EditUserType {
   create('ユーザーデータを一つ作成'),
-  createBatch('ユーザーデータを500個作成'),
-  deleteBatch('ユーザーデータを10個削除'),
+  createBatch('ユーザーデータを30個作成'),
+  delete('ユーザーデータを一つ削除'),
   deleteAll('全てのユーザーデータを削除');
 
   const EditUserType(this.text);

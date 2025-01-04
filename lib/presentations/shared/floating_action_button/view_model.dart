@@ -21,31 +21,15 @@ class EditUserActionViewModel extends _$EditUserActionViewModel {
 
   /// 複数のユーザー情報を作成する
   Future<void> createBatch() async {
-    const number = 500;
+    const number = 30;
     final users = List.generate(number, (_) => User.random());
 
     await ref.read(userRepositoryProvider).saveBatch(users);
   }
 
   /// ユーザー情報の初期化
-  Future<void> initUser() async {
-    await ref.read(userRepositoryProvider).deleteAll();
-  }
+  Future<void> initUser() async => ref.read(userRepositoryProvider).deleteAll();
 
   /// ユーザーをランダムで１０こ削除する
-  Future<void> deleteBatch() async {
-    const number = 10;
-    final users = await userRepository.findAll();
-
-    final userIds = users
-        .map((user) => user.id)
-        .whereType<int>()
-        .take(number)
-        .map((id) => id)
-        .toList();
-
-    if (userIds.isEmpty) return;
-
-    await ref.read(userRepositoryProvider).deleteBatch(userIds);
-  }
+  Future<void> delete() async => ref.read(userRepositoryProvider).delete();
 }
