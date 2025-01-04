@@ -6,11 +6,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'provider.g.dart';
 
 @Riverpod(keepAlive: true)
-UserRepositoryBase userRepository(Ref ref) {
-  return UserRepository(ref);
-}
+UserRepositoryBase userRepository(Ref ref) => UserRepository(ref);
 
 @riverpod
-Stream<List<User>> userList(Ref ref) {
-  return ref.read(userRepositoryProvider).watch();
-}
+Stream<List<User>> userList(Ref ref) =>
+    ref.read(userRepositoryProvider).watch();
