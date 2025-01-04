@@ -1,5 +1,6 @@
 import 'package:async_value_with_switch_sample/presentations/screens/home/screen.dart';
-import 'package:async_value_with_switch_sample/presentations/screens/switch/screen.dart';
+import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_a/screen.dart';
+import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_b/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/when/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -28,7 +29,7 @@ final _goRouter = GoRouter(
     ),
     GoRoute(
       path: WhenScreen.path,
-      name: 'WhenScreen',
+      name: WhenScreen.name,
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
@@ -37,12 +38,22 @@ final _goRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: SwitchScreen.path,
-      name: 'SwitchScreen',
+      path: SwitchPatternAScreen.path,
+      name: SwitchPatternAScreen.name,
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const SwitchScreen(),
+          child: const SwitchPatternAScreen(),
+        );
+      },
+    ),
+    GoRoute(
+      path: SwitchPatternBScreen.path,
+      name: SwitchPatternBScreen.name,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const SwitchPatternBScreen(),
         );
       },
     ),
