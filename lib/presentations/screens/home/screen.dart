@@ -1,4 +1,5 @@
-import 'package:async_value_with_switch_sample/presentations/screens/switch/screen.dart';
+import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_a/screen.dart';
+import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_b/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/when/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,16 +21,16 @@ class HomeScreen extends StatelessWidget {
           spacing: 20,
           children: [
             ElevatedButton(
-              child: const Text('WhenScreen'),
-              onPressed: () {
-                context.push(WhenScreen.path);
-              },
+              child: const Text(WhenScreen.name),
+              onPressed: () => context.push(WhenScreen.path),
             ),
             ElevatedButton(
-              child: const Text('SwitchScreen'),
-              onPressed: () {
-                context.push(SwitchScreen.path);
-              },
+              child: const Text(SwitchPatternAScreen.name),
+              onPressed: () => context.push(SwitchPatternAScreen.path),
+            ),
+            ElevatedButton(
+              child: const Text(SwitchPatternBScreen.name),
+              onPressed: () => context.push(SwitchPatternBScreen.path),
             ),
           ],
         ),

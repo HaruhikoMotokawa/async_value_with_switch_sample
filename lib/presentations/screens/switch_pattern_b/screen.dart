@@ -4,13 +4,14 @@ import 'package:async_value_with_switch_sample/presentations/shared/list_view/us
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WhenScreen extends ConsumerWidget {
-  const WhenScreen({
+class SwitchPatternBScreen extends ConsumerWidget {
+  const SwitchPatternBScreen({
     super.key,
   });
 
-  static const path = '/when';
-  static const name = 'WhenScreen';
+  static const path = '/switch_pattern_b';
+  static const name = 'SwitchPatternBScreen';
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userList = ref.watch(userListProvider);
@@ -19,20 +20,14 @@ class WhenScreen extends ConsumerWidget {
         title: const Text(name),
       ),
       body: Center(
-        child: userList.when(
-          // ここからデフォルトの設定で入っている
-          skipLoadingOnReload: false,
-          skipLoadingOnRefresh: true,
-          skipError: false,
-          // ここまで
-          data: (list) {
-            return list.isEmpty
-                ? const Text('データがありません')
-                : UserListView(list: list);
-          },
-          error: (error, stackTrace) => Text(error.toString()),
-          loading: () => const CircularProgressIndicator(),
-        ),
+        child: switch (userList) {
+          AsyncData(:final value, isLoading: false) =>
+            value.isEmpty ? const Text('データがありません') : UserListView(list: value),
+          AsyncData(isLoading: true) => const CircularProgressIndicator(),
+          AsyncError(:final error, :final stackTrace) =>
+            Text('エラーが発生しました  $error, $stackTrace'),
+          _ => const CircularProgressIndicator(),
+        },
       ),
       floatingActionButton: const EditUserFloatingActionButton(),
     );
