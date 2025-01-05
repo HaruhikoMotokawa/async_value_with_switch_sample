@@ -1,3 +1,4 @@
+import 'package:async_value_with_switch_sample/presentations/screens/bad_ehwn/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/home/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_a/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_b/screen.dart';
@@ -18,8 +19,8 @@ final _goRouter = GoRouter(
   // パスと画面の組み合わせ
   routes: [
     GoRoute(
-      path: '/',
-      name: 'initial',
+      path: HomeScreen.path,
+      name: HomeScreen.name,
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
@@ -34,6 +35,16 @@ final _goRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const WhenScreen(),
+        );
+      },
+    ),
+    GoRoute(
+      path: BadWhenScreen.path,
+      name: BadWhenScreen.name,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const BadWhenScreen(),
         );
       },
     ),

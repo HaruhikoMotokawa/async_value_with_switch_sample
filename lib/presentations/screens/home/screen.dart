@@ -1,3 +1,4 @@
+import 'package:async_value_with_switch_sample/presentations/screens/bad_ehwn/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_a/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_b/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/when/screen.dart';
@@ -9,11 +10,14 @@ class HomeScreen extends StatelessWidget {
     super.key,
   });
 
+  static const path = '/';
+  static const name = 'HomeScreen';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeScreen'),
+        title: const Text(name),
       ),
       body: Center(
         child: Column(
@@ -23,6 +27,10 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               child: const Text(WhenScreen.name),
               onPressed: () => context.push(WhenScreen.path),
+            ),
+            ElevatedButton(
+              child: const Text(BadWhenScreen.name),
+              onPressed: () => context.push(BadWhenScreen.path),
             ),
             ElevatedButton(
               child: const Text(SwitchPatternAScreen.name),

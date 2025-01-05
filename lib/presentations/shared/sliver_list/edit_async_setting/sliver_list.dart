@@ -44,6 +44,9 @@ class EditAsyncSettingSliverList extends ConsumerWidget {
               value: state.alwaysLoading,
               onChanged: (value) => viewModel.changeAsyncSetting(
                 alwaysLoading: value,
+                skipLoadingOnReload: false,
+                skipLoadingOnRefresh: false,
+                skipError: false,
               ),
             ),
             ElevatedButton(

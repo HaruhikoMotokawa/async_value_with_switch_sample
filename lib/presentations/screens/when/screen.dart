@@ -23,6 +23,7 @@ class WhenScreen extends ConsumerWidget {
     final asyncSetting = ref.watch(asyncSettingViewModelProvider);
 
     if (asyncSetting.alwaysLoading) {
+      // ２回目以降の変更を監視してinvalidateするとうまくいく
       ref.listen(userListProvider, (previous, _) {
         if (previous != null &&
             (previous.hasValue || previous.hasError) &&
