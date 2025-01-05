@@ -41,5 +41,9 @@ class AsyncSettingViewModel extends _$AsyncSettingViewModel {
     );
   }
 
-  void invalidate() => ref.invalidate(userListProvider);
+  void userListProviderInvalidate() => ref.invalidate(userListProvider);
+
+  void userListProviderRefresh() => ref.refresh(userListProvider);
+
+  void resetSetting() => ref.invalidateSelf();
 }

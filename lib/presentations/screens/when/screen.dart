@@ -42,41 +42,44 @@ class WhenScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text(name),
       ),
-      body: CustomScrollView(
-        slivers: [
-          const EditAsyncSettingSliverList(),
-          userList.when(
-            skipLoadingOnReload: asyncSetting.skipLoadingOnReload,
-            skipLoadingOnRefresh: asyncSetting.skipLoadingOnRefresh,
-            skipError: asyncSetting.skipError,
-            data: (list) {
-              return list.isEmpty
-                  ? const SliverToBoxAdapter(
-                      child: Column(
-                        children: [
-                          Gap(50),
-                          Icon(Icons.insert_emoticon_sharp, size: 100),
-                          Gap(8),
-                          Center(child: Text('データがありません')),
-                        ],
-                      ),
-                    )
-                  : UserSliverList(list: list);
-            },
-            error: (error, stackTrace) =>
-                SliverToBoxAdapter(child: Text(error.toString())),
-            loading: () => const SliverToBoxAdapter(
-              child: Center(
-                child: Column(
-                  children: [
-                    Gap(100),
-                    CircularProgressIndicator(),
-                  ],
+      body: RefreshIndicator(
+        onRefresh: () => ref.refresh(userListProvider.future),
+        child: CustomScrollView(
+          slivers: [
+            const EditAsyncSettingSliverList(),
+            userList.when(
+              skipLoadingOnReload: asyncSetting.skipLoadingOnReload,
+              skipLoadingOnRefresh: asyncSetting.skipLoadingOnRefresh,
+              skipError: asyncSetting.skipError,
+              data: (list) {
+                return list.isEmpty
+                    ? const SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            Gap(50),
+                            Icon(Icons.insert_emoticon_sharp, size: 100),
+                            Gap(8),
+                            Center(child: Text('データがありません')),
+                          ],
+                        ),
+                      )
+                    : UserSliverList(list: list);
+              },
+              error: (error, stackTrace) =>
+                  SliverToBoxAdapter(child: Text(error.toString())),
+              loading: () => const SliverToBoxAdapter(
+                child: Center(
+                  child: Column(
+                    children: [
+                      Gap(100),
+                      CircularProgressIndicator(),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButton: const EditUserFloatingActionButton(),
     );

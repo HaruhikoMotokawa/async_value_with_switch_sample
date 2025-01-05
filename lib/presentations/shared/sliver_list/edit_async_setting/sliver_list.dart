@@ -49,9 +49,23 @@ class EditAsyncSettingSliverList extends ConsumerWidget {
                 skipError: false,
               ),
             ),
-            ElevatedButton(
-              onPressed: viewModel.invalidate,
-              child: const Text('invalidate'),
+            Row(
+              spacing: 4,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: viewModel.userListProviderInvalidate,
+                  child: const Text('invalidate'),
+                ),
+                ElevatedButton(
+                  onPressed: viewModel.userListProviderRefresh,
+                  child: const Text('refresh'),
+                ),
+                ElevatedButton(
+                  onPressed: viewModel.resetSetting,
+                  child: const Text('resetSetting'),
+                ),
+              ],
             ),
             const Divider(),
           ],
