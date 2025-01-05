@@ -1,12 +1,13 @@
 import 'package:async_value_with_switch_sample/core/log/logger.dart';
 import 'package:async_value_with_switch_sample/data/repositories/user/provider.dart';
+import 'package:async_value_with_switch_sample/presentations/shared/error/widget.dart';
 import 'package:async_value_with_switch_sample/presentations/shared/floating_action_button/floating_action_button.dart';
+import 'package:async_value_with_switch_sample/presentations/shared/loading/widget.dart';
 import 'package:async_value_with_switch_sample/presentations/shared/sliver_list/edit_async_setting/sliver_list.dart';
 import 'package:async_value_with_switch_sample/presentations/shared/sliver_list/edit_async_setting/view_model.dart';
 import 'package:async_value_with_switch_sample/presentations/shared/sliver_list/user/sliver_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
 
 class WhenScreen extends ConsumerWidget {
   const WhenScreen({
@@ -51,32 +52,9 @@ class WhenScreen extends ConsumerWidget {
               skipLoadingOnReload: asyncSetting.skipLoadingOnReload,
               skipLoadingOnRefresh: asyncSetting.skipLoadingOnRefresh,
               skipError: asyncSetting.skipError,
-              data: (list) {
-                return list.isEmpty
-                    ? const SliverToBoxAdapter(
-                        child: Column(
-                          children: [
-                            Gap(50),
-                            Icon(Icons.insert_emoticon_sharp, size: 100),
-                            Gap(8),
-                            Center(child: Text('データがありません')),
-                          ],
-                        ),
-                      )
-                    : UserSliverList(list: list);
-              },
-              error: (error, stackTrace) =>
-                  SliverToBoxAdapter(child: Text(error.toString())),
-              loading: () => const SliverToBoxAdapter(
-                child: Center(
-                  child: Column(
-                    children: [
-                      Gap(100),
-                      CircularProgressIndicator(),
-                    ],
-                  ),
-                ),
-              ),
+              data: (list) => UserSliverList(list: list),
+              error: ErrorSliverWidget.new,
+              loading: LoadingWidget.new,
             ),
           ],
         ),
