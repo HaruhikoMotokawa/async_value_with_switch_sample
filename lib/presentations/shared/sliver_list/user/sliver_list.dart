@@ -2,16 +2,16 @@ import 'package:async_value_with_switch_sample/domains/models/user.dart';
 import 'package:async_value_with_switch_sample/presentations/shared/list_tile/user_list_tile.dart';
 import 'package:flutter/material.dart';
 
-class UserListView extends StatelessWidget {
-  const UserListView({
+class UserSliverList extends StatelessWidget {
+  const UserSliverList({
     required this.list,
     super.key,
   });
   final List<User> list;
+
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: const EdgeInsets.all(8),
+    return SliverList.separated(
       itemCount: list.length,
       itemBuilder: (context, index) {
         final user = list[index];
