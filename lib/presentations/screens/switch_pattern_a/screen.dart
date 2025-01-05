@@ -1,6 +1,6 @@
 import 'package:async_value_with_switch_sample/data/repositories/user/provider.dart';
 import 'package:async_value_with_switch_sample/presentations/shared/floating_action_button/floating_action_button.dart';
-import 'package:async_value_with_switch_sample/presentations/shared/list_view/user_list_view.dart';
+import 'package:async_value_with_switch_sample/presentations/shared/sliver_list/user/sliver_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,8 +21,9 @@ class SwitchPatternAScreen extends ConsumerWidget {
       ),
       body: Center(
         child: switch (userList) {
-          AsyncData(:final value) =>
-            value.isEmpty ? const Text('データがありません') : UserListView(list: value),
+          AsyncData(:final value) => value.isEmpty
+              ? const Text('データがありません')
+              : UserSliverList(list: value),
           AsyncError(:final error, :final stackTrace) =>
             Text('エラーが発生しました  $error, $stackTrace'),
           // AsyncLoadingを入れるだけだと、網羅されていないのでエラーになる

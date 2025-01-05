@@ -1,11 +1,15 @@
-# base_sample
-
-<img src="thumbnail/base_sample_thumbnail.png" width="300">
+# async_value_with_switch_sample
 
 > [!NOTE]
 >  このプロジェクトのFlutterSDKは **3.27.1** です。
 ## 概要
-このプロジェクトはサンプルプロジェクトを作るにあたっての雛形となるプロジェクトです。
+
+このプロジェクトはAsyncValueをwhenではなくswitchで書き換える場合のサンプルプロジェクトです。
+
+現在まだまだ作成中
+
+## 補足
+このプロジェクトはサンプルプロジェクトを作るにあたっての雛形となるbase_sampleから作成しています。
 
 この雛形プロジェクトからサンプル用のプロジェクトを構築する流れを以下の記事に記しています。
 [【Flutter】学習・開発効率UP！雛形からサンプル用プロジェクト構築ガイド](https://zenn.dev/harx/articles/23cac8d1e15d35)
