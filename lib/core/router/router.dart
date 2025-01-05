@@ -1,6 +1,6 @@
 import 'package:async_value_with_switch_sample/presentations/screens/bad_when/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/home/screen.dart';
-import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_a/screen.dart';
+import 'package:async_value_with_switch_sample/presentations/screens/switch/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/when/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -48,12 +48,12 @@ final _goRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: SwitchPatternAScreen.path,
-      name: SwitchPatternAScreen.name,
+      path: SwitchScreen.path,
+      name: SwitchScreen.name,
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const SwitchPatternAScreen(),
+          child: const SwitchScreen(),
         );
       },
     ),

@@ -1,5 +1,5 @@
 import 'package:async_value_with_switch_sample/presentations/screens/bad_when/screen.dart';
-import 'package:async_value_with_switch_sample/presentations/screens/switch_pattern_a/screen.dart';
+import 'package:async_value_with_switch_sample/presentations/screens/switch/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/screens/when/screen.dart';
 import 'package:async_value_with_switch_sample/presentations/shared/sliver_list/edit_async_setting/sliver_list.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +58,8 @@ extension on HomeScreen {
           trailing: const Icon(Icons.arrow_forward_ios),
         ),
         ListTile(
-          title: const Text(SwitchPatternAScreen.name),
-          onTap: () => context.push(SwitchPatternAScreen.path),
+          title: const Text(SwitchScreen.name),
+          onTap: () => context.push(SwitchScreen.path),
           trailing: const Icon(Icons.arrow_forward_ios),
         ),
       ];

@@ -8,14 +8,38 @@ import 'package:async_value_with_switch_sample/presentations/shared/sliver_list/
 import 'package:async_value_with_switch_sample/presentations/shared/sliver_list/user/sliver_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
-class WhenScreen extends ConsumerWidget {
-  const WhenScreen({
+class SwitchScreen extends ConsumerWidget {
+  const SwitchScreen({
     super.key,
   });
 
-  static const path = '/when';
-  static const name = 'WhenScreen';
+  static const path = '/switch_screen';
+  static const name = 'SwitchScreen';
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(name),
+      ),
+      body: RefreshIndicator(
+        onRefresh: () => ref.refresh(userListProvider.future),
+        child: const CustomScrollView(
+          slivers: [
+            EditAsyncSettingSliverList(),
+            _SwitchView(),
+          ],
+        ),
+      ),
+      floatingActionButton: const EditUserFloatingActionButton(),
+    );
+  }
+}
+
+class _SwitchView extends ConsumerWidget {
+  const _SwitchView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,32 +58,31 @@ class WhenScreen extends ConsumerWidget {
         }
       });
     }
-
     logger
       ..d('isLoading: ${userList.isLoading}')
       ..d('hasError: ${userList.hasError}')
       ..d('hasValue: ${userList.hasValue}');
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(name),
-      ),
-      body: RefreshIndicator(
-        onRefresh: () => ref.refresh(userListProvider.future),
-        child: CustomScrollView(
-          slivers: [
-            const EditAsyncSettingSliverList(),
-            userList.when(
-              skipLoadingOnReload: asyncSetting.skipLoadingOnReload,
-              skipLoadingOnRefresh: asyncSetting.skipLoadingOnRefresh,
-              skipError: asyncSetting.skipError,
-              data: (list) => UserSliverList(list: list),
-              error: ErrorSliverWidget.new,
-              loading: LoadingWidget.new,
-            ),
-          ],
+    return switch ((
+      asyncSetting.skipLoadingOnReload,
+      asyncSetting.skipLoadingOnRefresh,
+      asyncSetting.skipError
+    )) {
+      (false, true, false) => switch (userList) {
+          AsyncError(:final error, :final stackTrace) =>
+            ErrorSliverWidget(error, stackTrace),
+          AsyncData(:final value) => UserSliverList(list: value),
+          _ => const LoadingWidget()
+        },
+      _ => const SliverToBoxAdapter(
+          child: Column(
+            children: [
+              Gap(50),
+              Icon(Icons.insert_emoticon_sharp, size: 100),
+              Gap(8),
+              Center(child: Text('データがありません')),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: const EditUserFloatingActionButton(),
-    );
+    };
   }
 }
