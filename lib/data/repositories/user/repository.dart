@@ -86,8 +86,8 @@ class UserRepository implements UserRepositoryBase {
     // watchLazy で変更を監視
     final userStream = isar.userEntitys.watchLazy(fireImmediately: true);
     await for (final _ in userStream) {
-      // INFO: わざと３秒遅延させる
-      await Future<void>.delayed(const Duration(seconds: 3));
+      // INFO:わざと遅延を入れる
+      await Future<void>.delayed(const Duration(seconds: 1));
       yield await findAll();
     }
   }
