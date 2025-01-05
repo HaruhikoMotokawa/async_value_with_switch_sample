@@ -39,6 +39,13 @@ class EditAsyncSettingSliverList extends ConsumerWidget {
                 skipError: value,
               ),
             ),
+            SwitchListTile(
+              title: const Text('alwaysLoading'),
+              value: state.alwaysLoading,
+              onChanged: (value) => viewModel.changeAsyncSetting(
+                alwaysLoading: value,
+              ),
+            ),
             ElevatedButton(
               onPressed: viewModel.invalidate,
               child: const Text('invalidate'),

@@ -11,6 +11,7 @@ class AsyncSettingState with _$AsyncSettingState {
     required bool skipLoadingOnReload,
     required bool skipLoadingOnRefresh,
     required bool skipError,
+    required bool alwaysLoading,
   }) = _AsyncSettingState;
 }
 
@@ -22,6 +23,7 @@ class AsyncSettingViewModel extends _$AsyncSettingViewModel {
       skipLoadingOnReload: false,
       skipLoadingOnRefresh: true,
       skipError: false,
+      alwaysLoading: false,
     );
   }
 
@@ -29,11 +31,13 @@ class AsyncSettingViewModel extends _$AsyncSettingViewModel {
     bool? skipLoadingOnReload,
     bool? skipLoadingOnRefresh,
     bool? skipError,
+    bool? alwaysLoading,
   }) {
     state = AsyncSettingState(
       skipLoadingOnReload: skipLoadingOnReload ?? state.skipLoadingOnReload,
       skipLoadingOnRefresh: skipLoadingOnRefresh ?? state.skipLoadingOnRefresh,
       skipError: skipError ?? state.skipError,
+      alwaysLoading: alwaysLoading ?? state.alwaysLoading,
     );
   }
 
