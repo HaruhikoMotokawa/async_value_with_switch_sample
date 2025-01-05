@@ -4,13 +4,13 @@ import 'package:async_value_with_switch_sample/presentations/shared/sliver_list/
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SwitchPatternAScreen extends ConsumerWidget {
-  const SwitchPatternAScreen({
+class SwitchScreen extends ConsumerWidget {
+  const SwitchScreen({
     super.key,
   });
 
-  static const path = '/switch_pattern_a';
-  static const name = 'SwitchPatternAScreen';
+  static const path = '/switch_screen';
+  static const name = 'SwitchScreen';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
